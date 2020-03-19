@@ -9,8 +9,8 @@ module.exports = function (app) {
   const schema = new Schema({
     name: { type: String, required: true },
     background: { type: String, required: true },
-    ownerId: { type: Schema.Types.Object.id, ref: 'users' },
-    memberIds: { type: Schema.Types.Object.id, ref: 'users' }
+    ownerId: { type: Schema.Types.ObjectId, ref: 'users' },
+    memberIds: { type: Schema.Types.ObjectId, ref: 'users' }
   }, {
     timestamps: true
   });

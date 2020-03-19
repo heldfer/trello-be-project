@@ -1,20 +1,21 @@
 const { authenticate } = require('@feathersjs/authentication').hooks;
+//TODO: set the hooks to the boards - not working right now I dont know why
 const { setField } = require('feathers-authentication-hooks');
 
-const limitToOwnerId = setField({
-  from: 'ownerId',
-  as: 'ownerId'
+const restrictToOwner = setField({
+  from: 'params.users.ownerId',
+  as: 'params.query.ownerId',
 });
 
 module.exports = {
   before: {
-    all: [ authenticate('jwt') ],
-    find: [limitToOwnerId],
-    get: [limitToOwnerId],
-    create: [limitToOwnerId],
-    update: [limitToOwnerId],
-    patch: [limitToOwnerId],
-    remove: [limitToOwnerId]
+    all: [authenticate('jwt')],
+    find: [restrictToOwner],
+    get: [restrictToOwner],
+    create: [restrictToOwner],
+    update: [restrictToOwner],
+    patch: [restrictToOwner],
+    remove: [restrictToOwner]
   },
 
   after: {
