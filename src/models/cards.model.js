@@ -12,6 +12,7 @@ module.exports = function (app) {
     order: { type: Number, default: 0 },
     archived: { type: Boolean, default: false },
     listId: { type: Schema.Types.ObjectId, ref: 'lists' },
+    boardId: { type: Schema.Types.ObjectId, ref: 'boards' },
     members: [{
       type: Schema.Types.ObjectId,
       ref: 'users'
